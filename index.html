@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESA Mission Control Atlas</title>
+    <meta
+      name="description"
+      content="Live atlas of ESA member-state space agency headquarters with interactive map and data table."
+    />
+    <link rel="preconnect" href="https://unpkg.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <p class="eyebrow">Mission Control Dashboard</p>
+        <h1>ESA Member Agency Atlas</h1>
+        <p>
+          Real-time overview of all 22 ESA member-state agency headquarters,
+          including geocoded locations and operational map markers.
+        </p>
+        <div class="status-row">
+          <span class="badge" id="member-count">Loading agencies...</span>
+          <span class="badge badge--ghost">UTC <span id="utc-clock">--:--:--</span></span>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel panel--table" aria-labelledby="table-title">
+        <div class="panel__header">
+          <h2 id="table-title">Agency Headquarters Table</h2>
+          <label class="search" for="search-input">
+            <span class="sr-only">Search agencies, cities, or countries</span>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Search member state, agency, city..."
+              autocomplete="off"
+            />
+          </label>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Member State</th>
+                <th>Agency</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Address</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+              </tr>
+            </thead>
+            <tbody id="agency-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel panel--map" aria-labelledby="map-title">
+        <div class="panel__header">
+          <h2 id="map-title">Interactive Operations Map</h2>
+          <p class="panel__hint">Click a marker to inspect HQ details.</p>
+        </div>
+        <div id="map" role="application" aria-label="Map of ESA member agencies"></div>
+      </section>
+    </main>
+
+    <template id="table-row-template">
+      <tr>
+        <td data-key="memberState"></td>
+        <td data-key="agency"></td>
+        <td data-key="city"></td>
+        <td data-key="country"></td>
+        <td data-key="address"></td>
+        <td data-key="lat"></td>
+        <td data-key="lng"></td>
+      </tr>
+    </template>
+
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="assets/js/app.js" defer></script>
+  </body>
+</html>
